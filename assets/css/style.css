@@ -538,3 +538,4 @@ nav.main .btn{padding:10px 18px}
 header.site .bar{padding:8px 8px 8px 8px}
 footer.site .logo{--lh:52px;background:#fff!important}
 @media(max-width:640px){.logo{--lh:34px;padding:8px 14px}footer.site .logo{--lh:42px}}
+.rot{overflow:hidden;height:1.65em;line-height:1.65em;vertical-align:bottom}
