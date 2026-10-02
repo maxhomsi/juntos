@@ -463,3 +463,38 @@ h1 em,h2 em,.serif{font-family:'Instrument Serif',Georgia,serif;font-style:itali
 .ctabar .in{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;background:linear-gradient(120deg,#EEF9F1 0%,#D3EFDC 60%,#BFE7CB 100%);border-radius:28px;padding:30px 36px}
 .ctabar h2{font-size:clamp(1.5rem,2.6vw,2.1rem);margin:0;line-height:1.1}
 .ctabar p{margin:6px 0 0;color:var(--mut)}
+
+/* ===================== Tipografia delicada ===================== */
+h1,h2{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-.01em;line-height:1.05;color:var(--dk)}
+h1 em,h2 em{color:var(--pet)}
+h1{font-size:clamp(2.4rem,4.6vw,4rem)}
+h2{font-size:clamp(1.9rem,3.4vw,2.8rem)}
+h3,h4{font-weight:600;letter-spacing:-.01em}
+h3{font-size:1.2rem}
+.xhero h1{font-size:clamp(2.6rem,5vw,4.4rem);line-height:1.02;letter-spacing:-.01em}
+.phero h1{font-size:clamp(2.3rem,4.2vw,3.5rem)!important;line-height:1.05}
+.reel-sec h2{font-size:clamp(1.9rem,3.4vw,2.8rem)!important;line-height:1.05;letter-spacing:-.01em}
+.about h2{font-size:clamp(1.9rem,3.2vw,2.7rem);letter-spacing:-.01em}
+.ctabar h2{font-size:clamp(1.5rem,2.4vw,2rem)}
+footer.site .big{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:-.01em;font-size:clamp(1.8rem,3vw,2.4rem)}
+.b .num,.ag .dt b{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:0}
+.b .num{font-size:clamp(2.4rem,4vw,3.2rem)}
+.counters b{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:0;font-size:clamp(1.5rem,2.2vw,1.9rem)}
+.counters{padding:14px 18px;max-width:640px;border-radius:20px}
+.counters div{font-size:.78rem}
+.rcard h3,.ev h3{font-family:'Instrument Serif',Georgia,serif;font-weight:400;letter-spacing:0;font-size:1.45rem}
+.rot{font-weight:600}
+.btn{font-weight:500;font-size:.9rem;padding:12px 20px}
+.btn .arr{width:22px;height:22px;font-size:.8rem}
+nav.main a{font-size:.88rem}
+nav.main .btn{padding:10px 18px}
+.chip{font-weight:500}
+.frame{height:clamp(300px,46vh,480px);border-radius:28px}
+.sticker{width:104px;height:104px}
+.sticker b{font-size:1.4rem!important}
+.xhero .side p{font-size:1rem}
+.acc summary{font-weight:600;font-size:1.02rem}
+.acc summary .n{font-size:1.5rem}
+.badge-rot{width:124px;height:124px}
+.badge-rot b{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:1.9rem;letter-spacing:0}
+.ev-body h2,.b h2{letter-spacing:-.01em}
