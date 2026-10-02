@@ -498,3 +498,34 @@ nav.main .btn{padding:10px 18px}
 .badge-rot{width:124px;height:124px}
 .badge-rot b{font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:1.9rem;letter-spacing:0}
 .ev-body h2,.b h2{letter-spacing:-.01em}
+
+/* ===================== Assistente (balão do WhatsApp) ===================== */
+.wa-float{border:0;cursor:pointer}
+.wa-float.on{transform:rotate(-8deg) scale(.94)}
+.jt-chat{position:fixed;right:18px;bottom:88px;z-index:70;width:min(380px,calc(100vw - 24px));height:min(600px,calc(100vh - 120px));display:flex;flex-direction:column;background:#fff;border-radius:24px;box-shadow:0 24px 60px rgba(3,60,55,.22),0 2px 6px rgba(3,60,55,.08);overflow:hidden;opacity:0;transform:translateY(14px) scale(.98);transform-origin:bottom right;pointer-events:none;transition:opacity .25s var(--ease),transform .25s var(--ease)}
+.jt-chat.open{opacity:1;transform:none;pointer-events:auto}
+.jt-head{display:flex;align-items:center;gap:12px;padding:16px 16px 14px;background:linear-gradient(120deg,#EEF9F1,#D3EFDC);border-bottom:1px solid var(--line)}
+.jt-av{width:40px;height:40px;border-radius:50%;background:var(--pet);color:#fff;font-family:'Instrument Serif',serif;font-style:italic;font-size:1.4rem;display:flex;align-items:center;justify-content:center;flex:none}
+.jt-head b{display:block;font-size:.95rem;color:var(--dk);font-weight:600}
+.jt-head span{font-size:.78rem;color:var(--mut)}
+.jt-x{margin-left:auto;width:34px;height:34px;border-radius:50%;border:0;background:#fff;color:var(--dk);font-size:1.3rem;cursor:pointer;line-height:1}
+.jt-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:var(--cream);scroll-behavior:smooth}
+.jt-msg{max-width:88%;font-size:.88rem;line-height:1.5;padding:11px 14px;border-radius:18px;animation:jtIn .3s var(--ease)}
+.jt-msg.bot{background:#fff;color:var(--ink);border-bottom-left-radius:6px;box-shadow:0 1px 2px rgba(3,60,55,.06)}
+.jt-msg.me{align-self:flex-end;background:var(--pet);color:#fff;border-bottom-right-radius:6px}
+.jt-msg ul{margin:6px 0 6px 18px}
+.jt-msg li{margin-bottom:3px}
+.jt-msg a{color:var(--pet);font-weight:600;text-decoration:underline}
+.jt-chips{display:flex;flex-wrap:wrap;gap:6px;animation:jtIn .3s var(--ease)}
+.jt-chips button,.jt-chips a{font:inherit;font-size:.8rem;font-weight:500;border:1.5px solid #CFE6D7;background:#fff;color:var(--pet);padding:8px 12px;border-radius:99px;cursor:pointer;text-align:left;transition:.2s}
+.jt-chips button:hover{background:var(--mint);border-color:var(--mint)}
+.jt-chips button.alt{border-style:dashed;color:var(--mut)}
+.jt-chips a.go{background:var(--wa);border-color:var(--wa);color:#fff}
+.jt-form{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--line);background:#fff}
+.jt-form input{flex:1;font:inherit;font-size:.88rem;border:1.5px solid var(--line);border-radius:99px;padding:10px 14px;background:var(--cream);min-width:0}
+.jt-form input:focus{outline:none;border-color:var(--grn);background:#fff}
+.jt-form button{width:40px;height:40px;border-radius:50%;border:0;background:var(--pet);color:#fff;cursor:pointer;flex:none}
+.jt-wa{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--wa);color:#fff;font-weight:600;font-size:.88rem;padding:12px}
+.jt-wa svg{width:18px;height:18px;fill:#fff}
+@keyframes jtIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(max-width:640px){.jt-chat{right:12px;left:12px;width:auto;bottom:84px;height:min(560px,calc(100svh - 110px))}}

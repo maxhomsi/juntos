@@ -366,6 +366,8 @@
     el.addEventListener('click', function (ev) { if (moved) { ev.preventDefault(); moved = false; } }, true);
   }
 
+  window.JUNTOS_EVENTOS = carregar;
+
   reelHome();
   paginaEventos();
   destaquesHome();
