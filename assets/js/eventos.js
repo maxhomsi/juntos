@@ -143,7 +143,7 @@
       '<h3>' + esc(e.nome) + '</h3>' +
       (e.quando ? '<div class="meta">' + ICO_CAL + '<span>' + esc(e.quando) + '</span></div>' : '') +
       (e.cidade ? '<div class="meta">' + ICO_PIN + '<span>' + esc(e.cidade) + '</span></div>' : '') +
-      '<span class="more">' + (e.proximo ? 'Ver detalhes' : 'Ver o evento') + ' →</span></div></a>';
+      '<span class="more">' + (e.proximo ? 'Ver detalhes' : 'Ver o evento') + '</span></div></a>';
   }
 
   function agendaItem(e) {
@@ -153,8 +153,8 @@
       '<div class="meta">' + esc(e.quando) + (e.local ? ' · ' + esc(e.local) : '') + (e.cidade ? ' · ' + esc(e.cidade) : '') + '</div></div>' +
       '<div class="act" style="display:flex;gap:14px;align-items:center">' +
       (e.logo ? '<img class="lg" src="' + esc(e.logo) + '" alt="" loading="lazy">' : '') +
-      (e.inscricao ? '<a class="btn" href="' + esc(e.inscricao) + '" target="_blank" rel="noopener">Inscrições</a>'
-        : '<a class="btn outline" href="evento.html?id=' + encodeURIComponent(e.id) + '">Detalhes</a>') +
+      (e.inscricao ? '<a class="btn lime" href="' + esc(e.inscricao) + '" target="_blank" rel="noopener">Inscrições</a>'
+        : '<a class="btn ghost" href="evento.html?id=' + encodeURIComponent(e.id) + '">Detalhes</a>') +
       '</div></div>';
   }
 
@@ -234,7 +234,14 @@
       var p = document.getElementById('proximo-home');
       var prox = lst.filter(function (e) { return e.proximo; }).sort(function (a, b) { return (a.ini || 0) - (b.ini || 0); });
       if (p) {
-        if (prox.length) { p.innerHTML = agendaItem(prox[0]); p.closest('section').hidden = false; revelar(p); }
+        if (prox.length) {
+          var e = prox[0];
+          p.innerHTML = '<div class="stack"><div><span class="chip dark">Próximo evento</span>' +
+            '<h3 style="margin:18px 0 6px;font-size:1.6rem">' + esc(e.nome) + '</h3>' +
+            '<p style="margin:0">' + esc(e.quando) + (e.cidade ? '<br>' + esc(e.cidade) : '') + '</p></div>' +
+            '<a class="btn lime" href="' + (e.inscricao ? esc(e.inscricao) + '" target="_blank" rel="noopener' : 'evento.html?id=' + encodeURIComponent(e.id)) + '">' +
+            (e.inscricao ? 'Inscrições' : 'Ver evento') + ' <span class="arr">→</span></a></div>';
+        }
       }
     }).catch(function (e) { console.error(e); erro(el); });
   }
@@ -247,7 +254,8 @@
     carregar().then(function (lst) {
       var e = lst.filter(function (x) { return x.id === id; })[0];
       if (!e) {
-        root.innerHTML = '<div class="wrap section"><h2>Evento não encontrado</h2><p>Veja todos os eventos na nossa <a href="eventos.html">agenda e portfólio</a>.</p></div>';
+        root.innerHTML = '<div class="wrap section"><div class="b"><h2>Evento não encontrado</h2><p>Veja todos os eventos na nossa agenda e portfólio.</p><a class="btn" href="eventos.html">Ver eventos <span class="arr">→</span></a></div></div>';
+        var h = document.getElementById('ev-hero'); if (h) h.remove();
         return;
       }
       document.title = e.nome + ' | JUNTOS Produções & Eventos';
@@ -257,7 +265,12 @@
       if (hero) {
         hero.querySelector('h1').textContent = e.nome;
         hero.querySelector('p').textContent = e.titulo !== e.nome ? e.titulo : (e.descricao || '');
-        if (e.capa) hero.querySelector('.bg').style.backgroundImage = "url('" + e.capa + "')";
+        var cov = hero.querySelector('.ev-cover');
+        if (cov) {
+          var src = e.capa || e.logo;
+          if (src) { cov.innerHTML = '<img src="' + esc(src) + '" alt="' + esc(e.nome) + '"' + (e.capa ? '' : ' style="object-fit:contain;padding:30px;background:#fff"') + '>'; }
+          else { cov.remove(); }
+        }
         hero.querySelector('.crumb-ev').textContent = e.nome;
       }
       var info = '<aside class="ev-info">' +
@@ -266,20 +279,20 @@
         (e.local ? '<dt>Local</dt><dd>' + esc(e.local) + (e.cidade ? '<br>' + esc(e.cidade) : '') + '</dd>' : (e.cidade ? '<dt>Cidade</dt><dd>' + esc(e.cidade) + '</dd>' : '')) +
         (e.realizacao ? '<dt>Realização</dt><dd>' + esc(e.realizacao) + '</dd>' : '') +
         '<dt>Tipo</dt><dd>' + esc(e.tipo) + '</dd></dl>' +
-        (e.inscricao && e.proximo ? '<p style="margin:18px 0 0"><a class="btn" href="' + esc(e.inscricao) + '" target="_blank" rel="noopener">Fazer inscrição</a></p>' : '') +
+        (e.inscricao && e.proximo ? '<p style="margin:22px 0 0"><a class="btn lime" href="' + esc(e.inscricao) + '" target="_blank" rel="noopener">Fazer inscrição</a></p>' : '') +
         '</aside>';
-      var corpo = '<div>' +
-        '<span class="tag">' + (e.proximo ? 'Próximo evento' : 'Evento realizado') + '</span>' +
-        '<h2 style="margin-top:14px">' + esc(e.titulo) + '</h2>' +
-        (e.descricao ? '<p class="lead">' + br(e.descricao) + '</p>' : '') +
+      var corpo = '<div class="ev-body">' +
+        '<span class="chip">' + (e.proximo ? 'Próximo evento' : 'Evento realizado') + '</span>' +
+        
+        (e.descricao ? '<p class="lead" style="margin-top:18px;color:var(--dk);font-size:1.2rem">' + br(e.descricao) + '</p>' : '') +
         (e.programacao ? '<h3 style="margin-top:26px">Programação</h3><p>' + br(e.programacao) + '</p>' : '') +
         (e.fizemos ? '<h3 style="margin-top:26px">O que a JUNTOS fez</h3><p>' + br(e.fizemos) + '</p>' : '') +
         (e.depoimento ? '<blockquote class="quote">“' + br(e.depoimento) + '”' + (e.autor ? '<cite>— ' + esc(e.autor) + '</cite>' : '') + '</blockquote>' : '') +
         '</div>';
-      var gal = e.fotos.length ? '<h3 style="margin-top:46px">Fotos</h3><div class="gallery">' +
+      var gal = e.fotos.length ? '<h3 style="margin-top:40px">Galeria</h3><div class="gallery">' +
         e.fotos.map(function (f, i) { return '<a href="' + esc(f) + '" data-i="' + i + '"><img src="' + esc(f) + '" alt="' + esc(e.nome) + ' — foto ' + (i + 1) + '" loading="lazy"></a>'; }).join('') + '</div>' : '';
-      root.innerHTML = '<section class="section"><div class="wrap"><div class="ev-head">' + corpo + info + '</div>' + gal +
-        '<div style="margin-top:56px" class="btns"><a class="btn outline" href="eventos.html">← Todos os eventos</a><a class="btn" href="contato.html">Quero um evento assim</a></div></div></section>';
+      root.innerHTML = '<section class="section tight"><div class="wrap"><div class="ev-head">' + corpo + info + '</div>' + gal +
+        '<div style="margin-top:32px" class="btns"><a class="btn ghost" href="eventos.html">← Todos os eventos</a><a class="btn" href="contato.html">' + (e.proximo ? 'Fale com a gente' : 'Quero um evento assim') + ' <span class="arr">→</span></a></div></div></section>';
       lightbox(root, e.fotos);
     }).catch(function (err) { console.error(err); erro(root); });
   }
