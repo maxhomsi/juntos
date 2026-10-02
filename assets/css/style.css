@@ -529,3 +529,12 @@ nav.main .btn{padding:10px 18px}
 .jt-wa svg{width:18px;height:18px;fill:#fff}
 @keyframes jtIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @media(max-width:640px){.jt-chat{right:12px;left:12px;width:auto;bottom:84px;height:min(560px,calc(100svh - 110px))}}
+
+/* ===================== Logo colorida ===================== */
+/* recorte da logo oficial (verde) a partir do arquivo original 2560x1440 */
+.logo{--lh:44px;background:#fff!important;height:auto;padding:10px 20px;border-radius:99px;box-shadow:0 0 0 1px rgba(3,107,98,.08),0 6px 18px rgba(3,107,98,.12);transition:transform .25s var(--ease),box-shadow .25s}
+.logo:hover{transform:translateY(-1px);box-shadow:0 0 0 1px rgba(3,107,98,.12),0 10px 24px rgba(3,107,98,.18)}
+.logo .mark{display:block;height:var(--lh);width:calc(var(--lh)*3.837);background-repeat:no-repeat;background-size:calc(var(--lh)*7.191) calc(var(--lh)*4.045);background-position:calc(var(--lh)*-1.674) calc(var(--lh)*-1.5225)}
+header.site .bar{padding:8px 8px 8px 8px}
+footer.site .logo{--lh:52px;background:#fff!important}
+@media(max-width:640px){.logo{--lh:34px;padding:8px 14px}footer.site .logo{--lh:42px}}
