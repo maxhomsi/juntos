@@ -416,3 +416,44 @@ h1 em,h2 em,.serif{font-family:'Instrument Serif',Georgia,serif;font-style:itali
 .bigcta .line .star{color:var(--grn);font-size:clamp(2rem,5vw,4.5rem)}
 .bigcta .acts{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:26px}
 
+
+/* ===================== Tema claro (tons leves de verde) ===================== */
+.chip.dark{background:#fff;color:var(--pet)}
+.chip.dark:before{background:var(--grn)}
+.b.dark{background:#E6F5EA;color:var(--ink)}
+.b.pet{background:#CFEBD8;color:var(--ink)}
+.b.dark h1,.b.dark h2,.b.dark h3,.b.dark h4,.b.pet h2,.b.pet h3,.b.pet h4{color:var(--dk)}
+.b.dark .num,.b.pet .num{color:var(--pet)}
+.b.dark .ico,.b.pet .ico{background:#fff}
+.b.dark .ico svg,.b.pet .ico svg{stroke:var(--pet)}
+.b.dark .steps li,.b.pet .steps li{background:#fff}
+.b.dark .steps li:before,.b.pet .steps li:before{background:var(--mint);color:var(--pet)}
+.b.dark .steps p,.b.pet .steps p{color:var(--mut)}
+.b.dark ul.chk li:before,.b.pet ul.chk li:before{background-color:#fff}
+.b.grad{background:linear-gradient(125deg,#EEF9F1 0%,#D3EFDC 55%,#B9E5C7 100%);color:var(--ink)}
+.b.grad h2,.b.grad h3{color:var(--dk)}
+.b.grad .ico{background:#fff}
+.ev-info{background:#E6F5EA;color:var(--ink)}
+.ev-info dt{color:var(--pet)}
+.ev-info dd{color:var(--dk)}
+.ag .dt{background:var(--mint)}
+.ag .dt b{color:var(--pet)}
+.ag .dt span{color:var(--mut)}
+.acc details[open]{background:#E6F5EA;color:var(--ink)}
+.acc details[open] summary{color:var(--dk)}
+.acc details[open] summary .n{color:var(--pet)}
+.acc details[open] summary:after{background:#fff}
+.clist a{background:#fff}
+.clist a:hover{background:#F7FCF8}
+.clist small{color:var(--mut)}
+.b.dark .clist .ico{background:var(--mint)}
+.rcard:after{display:none}
+.rcard .tx{left:12px;right:12px;bottom:12px;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-radius:20px;padding:16px 18px}
+.rcard .tp{color:var(--pet)}
+.rcard h3{color:var(--dk);font-size:clamp(1.25rem,2vw,1.6rem);margin:6px 0 4px}
+.rcard .dt{color:var(--mut)}
+.rcard .yr{background:rgba(255,255,255,.92);color:var(--pet)}
+.rcard.logo-c{border:1px solid var(--line)}
+.frame:after{background:linear-gradient(180deg,transparent 65%,rgba(3,60,55,.18))}
+.b.photo.shade:after{background:linear-gradient(180deg,transparent 50%,rgba(3,80,70,.55))}
+.btn{background:var(--pet)}
