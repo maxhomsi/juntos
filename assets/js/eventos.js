@@ -320,6 +320,53 @@
     });
   }
 
+  /* ---------- Home: reel horizontal ---------- */
+  function reelHome() {
+    var el = document.getElementById('reel');
+    if (!el) return;
+    carregar().then(function (lst) {
+      var l = lst.slice().sort(function (a, b) { return (b.ini || 0) - (a.ini || 0); });
+      // próximos primeiro, depois realizados com foto, depois o resto
+      l = l.filter(function (e) { return e.proximo; }).concat(l.filter(function (e) { return !e.proximo && e.capa; }), l.filter(function (e) { return !e.proximo && !e.capa; }));
+      el.innerHTML = l.map(function (e) {
+        var foto = e.capa || e.logo;
+        return '<a class="rcard' + (e.capa ? '' : ' logo-c') + '" href="evento.html?id=' + encodeURIComponent(e.id) + '">' +
+          (foto ? '<img src="' + esc(foto) + '" alt="' + esc(e.nome) + '" loading="lazy" draggable="false">' : '') +
+          '<span class="yr">' + (e.proximo ? 'Em breve' : (e.ini ? e.ini.getFullYear() : '')) + '</span><span class="go">→</span>' +
+          '<div class="tx"><div class="tp">' + esc(e.tipo) + '</div>' +
+          '<h3>' + esc(e.nome) + '</h3><div class="dt">' + esc(e.quando) + (e.cidade ? ' · ' + esc(e.cidade) : '') + '</div></div></a>';
+      }).join('') + '<a class="rcard all" href="eventos.html"><h3>Ver todos os eventos</h3><span class="go">→</span></a>';
+      controlesReel(el);
+    }).catch(function (e) { console.error(e); erro(el); });
+  }
+
+  function controlesReel(el) {
+    var bar = document.querySelector('.reel-bar i');
+    var passo = function () { var c = el.querySelector('.rcard'); return c ? c.getBoundingClientRect().width + 18 : 400; };
+    document.querySelectorAll('[data-reel]').forEach(function (b) {
+      b.addEventListener('click', function () { el.scrollBy({ left: passo() * (+b.dataset.reel), behavior: 'smooth' }); });
+    });
+    var upd = function () {
+      if (!bar) return;
+      var max = el.scrollWidth - el.clientWidth;
+      var vis = el.clientWidth / el.scrollWidth;
+      bar.style.width = Math.max(vis, max ? (el.scrollLeft / max) : 1) * 100 + '%';
+    };
+    el.addEventListener('scroll', upd, { passive: true }); upd();
+    // arrastar com o mouse
+    var down = false, x0 = 0, s0 = 0, moved = false;
+    el.addEventListener('mousedown', function (ev) { down = true; moved = false; x0 = ev.pageX; s0 = el.scrollLeft; });
+    window.addEventListener('mousemove', function (ev) {
+      if (!down) return;
+      var dx = ev.pageX - x0;
+      if (Math.abs(dx) > 5) { moved = true; el.classList.add('drag'); }
+      el.scrollLeft = s0 - dx;
+    });
+    window.addEventListener('mouseup', function () { down = false; setTimeout(function () { el.classList.remove('drag'); }, 0); });
+    el.addEventListener('click', function (ev) { if (moved) { ev.preventDefault(); moved = false; } }, true);
+  }
+
+  reelHome();
   paginaEventos();
   destaquesHome();
   paginaEvento();

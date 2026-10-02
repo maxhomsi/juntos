@@ -53,6 +53,49 @@
     els.forEach(function (el) { el.classList.add('in'); });
   }
 
+  // Cabeçalho: muda de estilo ao rolar (home)
+  if (document.body.classList.contains('home')) {
+    var onScroll = function () {
+      document.body.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.75);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  // Palavras que giram no hero
+  document.querySelectorAll('.rot').forEach(function (rot) {
+    var spans = rot.querySelectorAll('span');
+    if (spans.length < 2 || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var i = 0;
+    setInterval(function () {
+      var cur = spans[i];
+      cur.classList.remove('on'); cur.classList.add('out');
+      setTimeout(function () { cur.classList.remove('out'); }, 500);
+      i = (i + 1) % spans.length;
+      spans[i].classList.add('on');
+    }, 2200);
+  });
+
+  // Contadores animados
+  var cnt = document.querySelectorAll('[data-count]');
+  if (cnt.length && 'IntersectionObserver' in window) {
+    var co = new IntersectionObserver(function (en) {
+      en.forEach(function (x) {
+        if (!x.isIntersecting) return;
+        co.unobserve(x.target);
+        var el = x.target, to = +el.dataset.count, suf = el.dataset.suffix || '', t0 = null;
+        var step = function (t) {
+          if (!t0) t0 = t;
+          var k = Math.min((t - t0) / 1400, 1);
+          el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))) + suf;
+          if (k < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.5 });
+    cnt.forEach(function (el) { co.observe(el); });
+  }
+
   // Formulário de orçamento → WhatsApp
   var form = document.getElementById('form-orcamento');
   if (form) {
