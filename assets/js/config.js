@@ -12,11 +12,10 @@ window.JUNTOS = {
   facebook: '', // coloque aqui o link da página do Facebook, se houver
 
   /*
-   * PLANILHA DE EVENTOS (Google Sheets)
-   * 1. Na planilha: Arquivo > Compartilhar > Publicar na Web
-   * 2. Escolha a aba "eventos" e o formato "Valores separados por vírgula (.csv)"
-   * 3. Cole o link gerado abaixo, entre as aspas.
-   * Enquanto estiver vazio, o site usa o arquivo data/eventos.csv.
+   * PLANILHA DE EVENTOS (Google Sheets) — "Site JUNTOS — eventos"
+   * Editar: https://docs.google.com/spreadsheets/d/1tvpv1apbH7-ppWns-V4LF7piVK3uudMRn7zYGS0-OwM/edit
+   * A planilha precisa estar compartilhada como "Qualquer pessoa com o link: Leitor".
+   * Se a planilha não responder, o site usa o arquivo data/eventos.csv.
    */
-  planilhaEventosCSV: ''
+  planilhaEventosCSV: 'https://docs.google.com/spreadsheets/d/1tvpv1apbH7-ppWns-V4LF7piVK3uudMRn7zYGS0-OwM/gviz/tq?tqx=out:csv&sheet=eventos'
 };

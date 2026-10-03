@@ -4,10 +4,14 @@ Os eventos do site (agenda, portfólio, destaques da página inicial e a página
 evento) vêm de **uma planilha do Google**. Quem edita a planilha atualiza o site — sem
 programador e sem mexer em código.
 
+**Planilha oficial:** [Site JUNTOS — eventos](https://docs.google.com/spreadsheets/d/1tvpv1apbH7-ppWns-V4LF7piVK3uudMRn7zYGS0-OwM/edit) (aba `eventos`).
+Ela já está ligada ao site em `assets/js/config.js` e precisa ficar compartilhada como
+"Qualquer pessoa com o link: Leitor". As datas vão no formato `dd/mm/aaaa`.
+
 ## Como funciona
 
 ```
-Planilha Google  ──(publicada como CSV)──▶  site lê ao abrir a página  ──▶  agenda + portfólio
+Planilha Google  ──(link de leitor)  ──▶  site lê ao abrir a página  ──▶  agenda + portfólio
 ```
 
 - Cada **linha** da planilha é um evento.

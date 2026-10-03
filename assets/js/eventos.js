@@ -119,7 +119,11 @@
         return r.text();
       });
     };
-    var fonte = C.planilhaEventosCSV ? get(C.planilhaEventosCSV).catch(function (e) {
+    var fonte = C.planilhaEventosCSV ? get(C.planilhaEventosCSV).then(function (t) {
+      var ok = parseCSV(t).some(function (r) { return r.nome; });
+      if (!ok) throw new Error('Planilha sem eventos');
+      return t;
+    }).catch(function (e) {
       console.warn('Planilha indisponível, usando arquivo local.', e);
       return get(LOCAL_CSV);
     }) : get(LOCAL_CSV);
