@@ -72,6 +72,7 @@
     return (s || '').split(/[\n\r]+|\s*;\s*|\s+(?=https?:)|,\s*(?=https?:|assets\/)/)
       .map(function (x) { return x.trim(); }).filter(Boolean).map(img);
   }
+  function wa() { return window.waLink ? window.waLink() : 'https://wa.me/' + (C.whatsapp || ''); }
   function sim(v) { return /^(sim|s|x|yes|true|1)$/i.test((v || '').trim()); }
   function esc(s) {
     return (s || '').replace(/[&<>"']/g, function (c) {
@@ -186,7 +187,7 @@
       var feitos = lst.filter(function (e) { return !e.proximo; }).sort(function (a, b) { return (b.ini || 0) - (a.ini || 0); });
       if (ag) {
         ag.innerHTML = prox.length ? prox.map(agendaItem).join('')
-          : '<div class="empty">Novas datas em breve. Quer organizar o seu evento? <a href="contato.html">Fale com a gente</a>.</div>';
+          : '<div class="empty">Novas datas em breve. Quer organizar o seu evento? <a href="' + wa() + '" target="_blank" rel="noopener">Fale com a nossa equipe</a>.</div>';
       }
       if (grid) {
         var tipos = ['Todos'];
@@ -296,7 +297,7 @@
       var gal = e.fotos.length ? '<h3 style="margin-top:40px">Galeria</h3><div class="gallery">' +
         e.fotos.map(function (f, i) { return '<a href="' + esc(f) + '" data-i="' + i + '"><img src="' + esc(f) + '" alt="' + esc(e.nome) + ' — foto ' + (i + 1) + '" loading="lazy"></a>'; }).join('') + '</div>' : '';
       root.innerHTML = '<section class="section tight"><div class="wrap"><div class="ev-head">' + corpo + info + '</div>' + gal +
-        '<div style="margin-top:32px" class="btns"><a class="btn ghost" href="eventos.html">← Todos os eventos</a><a class="btn" href="contato.html">' + (e.proximo ? 'Fale com a gente' : 'Quero um evento assim') + ' <span class="arr">→</span></a></div></div></section>';
+        '<div style="margin-top:32px" class="btns"><a class="btn ghost" href="eventos.html">← Todos os eventos</a><a class="btn" href="' + wa() + '" target="_blank" rel="noopener">' + (e.proximo ? 'Fale com a nossa equipe' : 'Quero um evento assim') + ' <span class="arr">→</span></a></div></div></section>';
       lightbox(root, e.fotos);
     }).catch(function (err) { console.error(err); erro(root); });
   }

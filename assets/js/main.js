@@ -83,11 +83,11 @@
       en.forEach(function (x) {
         if (!x.isIntersecting) return;
         co.unobserve(x.target);
-        var el = x.target, to = +el.dataset.count, suf = el.dataset.suffix || '', t0 = null;
+        var el = x.target, to = +el.dataset.count, suf = el.dataset.suffix || '', pre = el.dataset.prefix || '', t0 = null;
         var step = function (t) {
           if (!t0) t0 = t;
           var k = Math.min((t - t0) / 1400, 1);
-          el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))) + suf;
+          el.textContent = pre + Math.round(to * (1 - Math.pow(1 - k, 3))) + suf;
           if (k < 1) requestAnimationFrame(step);
         };
         requestAnimationFrame(step);
